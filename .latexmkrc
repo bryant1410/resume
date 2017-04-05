@@ -8,6 +8,8 @@ $out_dir = './output';
 
 $ean_ext = 'acn acr alg aux bbl bcf blg brf fdb_latexmk glg glo gls idx ilg ind ist lof log lot out run.xml toc dvi';
 
-# Para el paquete svg y por LuaLatex
+# For svg package and for LuaLatex
 $latex = 'lualatex --shell-escape';
 $pdflatex = 'lualatex -pdf --shell-escape';
+
+$pdf_previewer = 'xdg-open'
