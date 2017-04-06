@@ -88,52 +88,14 @@
 \item Optimized Google's homepage and A/B tested every minor detail to increase usability (incl.~spacing between words, color schemes and pixel-by-pixel element alignment)
 \end{itemize}
 
-% \divider{}
-
-% \cvevent{Product Engineer}{Google}{23 June 1999 --- 2001}{Palo Alto, CA}
-
-% \begin{itemize}
-% \item Joined the company as employe \#20 and female employee \#1
-% \item Developed targeted advertisement in order to use user's search queries and show them related ads
-% \end{itemize}
-
-\cvsection{A Day of My Life}
-
-% Adapted from @Jake's answer from http://tex.stackexchange.com/a/82729/226
-% \wheelchart{outer radius}{inner radius}{
-% comma-separated list of value/text width/color/detail}
-\wheelchart{1.5cm}{0.5cm}{%
-  10/13em/accent!30/Sleeping \& dreaming about work,
-  25/9em/accent!60/Public resolving issues with Yahoo!\ investors,
-  5/12em/accent!10/New York \& San Francisco Ballet Jawbone board member,
-  20/12em/accent!40/Spending time with family,
-  5/8em/accent!20/Business development for Yahoo!\ after the Verizon acquisition,
-  30/9em/accent/Showing Yahoo!\ employees that their work has meaning,
-  5/8em/accent!20/Baking cupcakes
-}
-
-\clearpage
-
-\cvsection[page2sidebar]{Publications}
+\cvsection{Publications}
 
 \nocite{*}
 
 \printbibliography[heading=pubtype,title={\printinfo{\faBook}{Books}},type=book]
 
-\divider{}
-
 \printbibliography[heading=pubtype,title={\printinfo{\faFileTextO}{Journal Articles}}, type=article]
 
-\divider{}
-
 \printbibliography[heading=pubtype,title={\printinfo{\faGroup}{Conference Proceedings}},type=inproceedings]
-
-%% If the NEXT page doesn't start with a \cvsection but you'd
-%% still like to add a sidebar, then use this command on THIS
-%% page to add it. The optional argument lets you pull up the
-%% sidebar a bit so that it looks aligned with the top of the
-%% main column.
-% \addnextpagesidebar[-1ex]{page3sidebar}
-
 
 \end{document}
