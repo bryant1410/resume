@@ -1,0 +1,29 @@
+{
+  "name": "resume",
+  "version": "1.0.0",
+  "description": "Santiago Castro's resume",
+  "private": true,
+  "scripts": {
+    "clean": "latexmk -C main.tex",
+    "build:html": "make4ht -l main.tex",
+    "build": "latexmk main.tex",
+    "start": "latexmk -pvc main.tex",
+    "dist": "cp output/main.pdf dist",
+    "predeploy": "npm run build && npm run dist",
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bryant1410/resume.git"
+  },
+  "author": "Santiago Castro",
+  "license": "LLPL-1.3c",
+  "bugs": {
+    "url": "https://github.com/bryant1410/resume/issues"
+  },
+  "homepage": "https://github.com/bryant1410/resume",
+  "devDependencies": {
+    "gh-pages": "^0.12.0",
+    "rimraf": "^2.6.1"
+  }
+}
