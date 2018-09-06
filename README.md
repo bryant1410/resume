@@ -1,4 +1,4 @@
-# My resume
+# Resume of Santiago Castro
 
 To compile:
 

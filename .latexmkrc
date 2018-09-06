@@ -10,6 +10,6 @@ $ean_ext = 'acn acr alg aux bbl bcf blg brf fdb_latexmk glg glo gls idx ilg ind 
 
 # For svg package and for LuaLatex
 $latex = 'lualatex --shell-escape';
-$pdflatex = 'lualatex -pdf --shell-escape';
+$pdflatex = 'lualatex --shell-escape';
 
 $pdf_previewer = 'xdg-open'

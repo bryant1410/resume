@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is based on an example CV created using altacv.cls (v1.1.2, 1 February 2017) written by
+% This is based on an example CV created using altacv.cls (v1.1.4, 27 July 2018) written by
 % LianTze Lim (liantze@gmail.com), based on the
 % Cv created by BusinessInsider at http://www.businessinsider.my/a-sample-resume-for-marissa-mayer-2016-7/?r=US&IR=T
 %
@@ -37,30 +37,102 @@
 \newcommand{\dateofbirthsymbol}{\faBirthdayCake}
 \newcommand{\dateofbirth}[1]{\printinfo{\dateofbirthsymbol}{#1}}
 
+\newcommand{\homesymbol}{\faHome}
+\newcommand{\home}[1]{\printinfo{\homesymbol}{#1}}
+
 \addbibresource{main.bib}
 
 \begin{document}
 
 \name{Santiago Castro}
-\tagline{Computer Scientist \& Proud Geek}
+\tagline{PhD Student}
 \photo{2.5cm}{me}
 \personalinfo{%
-  \email{\href{mailto:santiago@xmartlabs.com}{santiago@xmartlabs.com}}
-  \dateofbirth{September 29, 1991}
-  \location{Montevideo, Uruguay}
-  \github{\href{https://github.com/bryant1410}{github.com/bryant1410}}
-  \linkedin{\href{https://linkedin.com/in/santiagocastroserra}{linkedin.com/in/santiagocastroserra}}
-  \stackoverflow{\href{https://stackoverflow.com/story/bryant1410}{stackoverflow.com/story/bryant1410}}
+  \email{\href{mailto:sacastro@umich.edu}{sacastro@umich.edu}}
+  \dateofbirth{Sept. \nth{29}, 1991}
+  \location{Ann Arbor, MI, USA}
+  \home{Montevideo, Uruguay}
+  \github{\href{https://github.com/bryant1410}{bryant1410}}
+  \twitter{\href{https://twitter.com/bryant1410}{bryant1410}}
+  \linkedin{\href{https://linkedin.com/in/santiagocastroserra}{santiagocastroserra}}
+  \stackoverflow{\href{https://stackoverflow.com/story/bryant1410}{bryant1410}}
 }
 
-\begin{adjustwidth}{}{-8cm}
+\begin{fullwidth}
 \makecvheader{}
 
 Diligent Computer Scientist with experience both in the industry, highlighting a 3-year Android Development involvement, and the academy, with acknowledgments such as a \nth{2} place in a Best Paper Award. Passionate about Natural Language Processing and Machine Learning. Free Software fan.
 
-\end{adjustwidth}
+\end{fullwidth}
 
-\cvsection[page1sidebar]{Publications}
+\cvsection[page1sidebar]{Education}
+
+\cvevent{Ph.D.\ in Computer Science}{University of Michigan}{Sept. 2018 --- Present}{Ann Arbor, MI, USA}
+
+\begin{itemize}
+  \item Advisor: Rada Mihalcea
+\end{itemize}
+
+\cvevent{B.E.\ in Computer Science}{Universidad de la República}{March 2010 --- May 2015}{Montevideo, Uruguay}
+
+\begin{itemize}
+  \item \nth{3} student that got graduated, chronologically, out of a generation of 665.
+
+  \item GPA:\@ 9.9 (out of 12, average at the university is 5.6). \nth{4} in GPA ranking.
+
+  \item Extracurricular courses: Introduction to Deep Learning, Deep Learning applied to Natural
+  Language Processing, Formal Grammars for Natural Language, General-Purpose Computing on
+  Graphics Processing Units and Semantic Parsing.
+\end{itemize}
+
+\cvsection{Work Experience}
+
+\cvevent{Lead Machine Learning Engineer}{Xmartlabs}{September 2016 --- August 2018}{Montevideo, Uruguay}
+
+\begin{itemize}
+  \item I started a Machine Learning area, highly focused on Mobile Computer Vision projects. It included the pioneering idea, design and development leadership of the open source project Bender: a novel framework to run neural networks in iOS for real-time purposes, using the iPhone’s GPU.\@ This project, after its release, has subsequently seen the emerge competitors from big tech companies (i.e., Google’s TF Lite, Apple’s Core ML, Facebook’s Caffe2Go and Baidu’s MDL). Worked also on other projects for the Entertainment, Retail and Agro industries.
+  \item \emph{Bender}: \url{https://github.com/xmartlabs/Bender}
+  \item \emph{Dreamsnap}: \url{https://getdreamsnap.com}
+\end{itemize}
+
+\divider{}
+
+\cvevent{Web Developer}{Department of Social and Political Sciences, Universidad Católica del Uruguay}{June 2016 --- November 2016}{Montevideo, Uruguay}
+
+\begin{itemize}
+  \item Development of a web site for a project to show the network between political parties and the donors in their campaigns.
+  \item \url{https://finpol.github.io}
+\end{itemize}
+
+\divider{}
+
+\cvevent{Teaching \& Research Assistant (``Asistente --- Grado 2'')}{Universidad de la República}{March 2014 --- August 2018}{Montevideo, Uruguay}
+
+\begin{itemize}
+  \item \emph{Natural Language Processing Group} member.
+  \item \url{https://www.fing.edu.uy/inco/grupos/pln/}
+\end{itemize}
+
+\divider{}
+
+\cvevent{Lead Android Engineer}{Xmartlabs}{March 2014 --- August 2016}{Montevideo, Uruguay}
+
+\begin{itemize}
+  \item Mainly the development of Android apps (mainly in the projects \emph{Lynkos CRM}, \emph{Feeld} and \emph{Franklin}). Also worked in frontend development with HTML, CSS, Javascript and jQuery, and backend using Ruby, with the Sinatra and Rails frameworks.
+  \item Maintenance of a local server with several deployments. Docker implementation in several projects.
+\end{itemize}
+
+\divider{}
+
+\cvevent{Co-founder \& IT Manager}{Yojuego}{July 2012 --- Present}{Montevideo, Uruguay}
+
+\begin{itemize}
+  \item Side-project that gives a space to players from basketball youth academies from Uruguay. The site presents videos, photos, stats and media coverage for the subject.
+  \item Management of a Virtual Private Server, Apache web server, MySQL database system and Wordpress web site. Also worked on the product development.
+  \item \url{https://yojuego.com.uy}
+\end{itemize}
+
+\cvsection{Publications}
 
 \nocite{*}
 
@@ -68,55 +140,41 @@ Diligent Computer Scientist with experience both in the industry, highlighting a
 
 \printbibliography[heading=pubtype,title={\printinfo{\faFileTextO}{Journal Articles}}, type=article]
 
+\printbibliography[heading=pubtype,title={\printinfo{\faGraduationCap}{Theses}},type=thesis]
+
 \printbibliography[heading=pubtype,title={\printinfo{\faGroup}{Conference Proceedings}},type=inproceedings]
 
-\cvsection{Experience}
+\printbibliography[heading=pubtype,title={\printinfo{\faGroup}{Workshop Proceedings}},type=incollection]
 
-\cvevent{Machine Learning Engineer}{Xmartlabs}{September 2016 --- Ongoing}{}
+\printbibliography[heading=pubtype,title={\printinfo{\faAsterisk}{Non Refereed}},type=misc]
 
-\begin{itemize}
-  \item \emph{Dreamsnap}: project about artistic style transfer in photos, using Deep Neural Networks. Worked on the original idea, the execution, design and new styles training. \url{https://getdreamsnap.com}
-  \item Working on a project about machine-aided prospecting. Involved information extraction using Scrapy, data analysis and data integration for different sources. In addition, worked on the management of a dashboard to show this information.
-\end{itemize}
+\cvsection{Thesis Supervisions}
 
-\divider{}
-
-\cvevent{Teaching Assistant}{Universidad de la República}{March 2014 --- Ongoing}{}
+\cvevent{Machine Classifier System of Answers According to their Relevance (``Sistema clasificador
+automático de respuestas según relevancia'')}{Undergraduate thesis, Universidad de la República}{August 2016 --- December 2017}{Montevideo, Uruguay}
 
 \begin{itemize}
-  \item In courses about Logic Programming and Advanced Data Structures and Algorithms. Formerly in an Introductory course about Data Structures.
-  \item Member of the \emph{Natural Language Processing Group}.
-  \item Supervising a Machine Learning undergraduate thesis about Automatic Answer Ranking for Questions from Spanish Language (Stack Exchange).
-  \item Participation on a project about finding \emph{false friends} between Spanish and Portuguese using word embeddings.
-  \item Took extra-curricular courses: \emph{Formal Grammars for NLP}, \emph{Seminar of Deep Learning}, \emph{Semantic Parsing for Natural Language} and \emph{Deep Learning}.
+  \item \url{https://www.fing.edu.uy/inco/grupos/pln/prygrado/SCARR_Documento_Principal.pdf}
 \end{itemize}
 
-\divider{}
+\cvsection{Talks}
 
-\cvevent{System Administrator \& Cofounder}{Yojuego}{July 2012 --- Ongoing}{}
+\cvevent{A High Coverage Method for Automatic False Friends Detection for Spanish and Portuguese}{VarDial 2018 @ COLING 2018}{August 2018}{Santa Fe, New Mexico, USA}
 
-\begin{itemize}
-  \item Side-project that gives a space to players from basketball youth academies from Uruguay. The site presents videos, photos, stats and media coverage for the subject.
-  \item Virtual Private Server and Wordpress site maintenance. Also worked on the product development.
-  \item \url{https://yojuego.com.uy}
-\end{itemize}
+\cvevent{A Crowd-Annotated Spanish Corpus for Humor Analysis}{SocialNLP 2018 @ ACL 2018}{July 2018}{Melbourne, Australia}
 
-\divider{}
+\cvevent{Mobile Machine Learning}{Machine Learning undergraduate course, University of the Republic}{May 2018}{Montevideo, Uruguay}
 
-\cvevent{Web Developer}{Department of Social and Political Sciences, Universidad Católica del Uruguay}{June 2016 --- November 2016}{}
+\cvevent{Mobile Machine Learning with Bender}{Deep Learning Applied to Computer Vision graduate course, University of the Republic}{October 2017}{Montevideo, Uruguay}
 
-\begin{itemize}
-  \item Development of a web site that shows the network between political parties and its donors in their campaigns.
-  \item \url{https://finpol.github.io}
-\end{itemize}
+\cvevent{Bender: Efficient Execution of Neural Networks in iOS}{Open Tech 2017}{September 2017}{Montevideo, Uruguay}
 
-\divider{}
+\cvevent{Humor Detection in Tweets}{9º Foro de Lenguas de ANEP}{December 2016}{Montevideo, Uruguay}
 
-\cvevent{Lead Android Engineer}{Xmartlabs}{March 2014 --- August 2016}{}
+\cvevent{Is This a Joke? Detecting Humor in Spanish Tweets}{IBERAMIA 2016}{November 2016}{San José, Costa Rica}
 
-\begin{itemize}
-  \item Mainly development of Android apps (in the projects \emph{Lynkos CRM}, \emph{3nder} and \emph{Franklin}). Also worked in frontend development.
-  \item Maintenance of a local server. Docker implementation in several projects.
-\end{itemize}
+\cvevent{Automatic Detection of False Friends}{\nth{2} Workshop of RITA Project}{March 2016}{Porto Alegre, Rio Grande do Sul, Brazil}
+
+\cvevent{Humor Detection in Spanish Tweets}{Seminar of the Computer Science Department, University of the Republic}{June 2015}{Montevideo, Uruguay}
 
 \end{document}

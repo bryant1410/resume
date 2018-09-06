@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.1.2, 1 February 2017) written by
+% This is altacv.cls (v1.1.4, 27 July 2018) written by
 % LianTze Lim (liantze@gmail.com).
 %
 %% It may be distributed and/or modified under the
@@ -11,11 +11,16 @@
 %% version 2003/12/01 or later.
 %%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
+%% v1.4: Detect TL2018 to handle accented characters in class information
+\@ifl@t@r\fmtversion{2018/04/01}{\UseRawInputEncoding}{}
 \ProvidesClass{altacv}[2017/02/01 AltaCV v1.1.2, yet another alternative class for a résumé/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
 \newif\if@academicons
 \DeclareOption{academicons}{\@academiconstrue}
+%% v1.1.3: Choice of round/square photo
+\newif\if@normalphoto
+\DeclareOption{normalphoto}{\@normalphototrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{extarticle}}
 \ProcessOptions\relax
 
@@ -59,6 +64,10 @@
 \setlength{\parindent}{0pt}
 \newcommand{\divider}{\textcolor{body!30}{\hdashrule{\linewidth}{0.6pt}{0.5ex}}\medskip}
 
+\newenvironment{fullwidth}{%
+  \begin{adjustwidth}{}{\dimexpr-\marginparwidth-\marginparsep\relax}}
+  {\end{adjustwidth}}
+
 \newcommand{\emailsymbol}{\faAt}
 \newcommand{\phonesymbol}{\faPhone}
 \newcommand{\homepagesymbol}{\faChain}
@@ -69,7 +78,7 @@
 \newcommand{\orcidsymbol}{\aiOrcid}
 \newcommand{\mailsymbol}{\faEnvelope}
 
-\newcommand{\printinfo}[2]{\mbox{\textcolor{accent}{#1}\hspace{0.5em}#2\hspace{2em}}}
+\newcommand{\printinfo}[2]{\mbox{\textcolor{accent}{\normalfont #1}\hspace{0.5em}#2\hspace{2em}}}
 
 \newcommand{\name}[1]{\def\@name{#1}}
 \newcommand{\tagline}[1]{\def\@tagline{#1}}
@@ -98,7 +107,11 @@
     \ifdef{\@photodiameter}{%
     \end{minipage}\hfill%
     \begin{minipage}{\@photodiameter}
-    \tikz\path[fill overzoom image={\@photo}]circle[radius=0.5\linewidth];
+    \if@normalphoto
+      \includegraphics[width=\linewidth]{\@photo}
+    \else
+      \tikz\path[fill overzoom image={\@photo}]circle[radius=0.5\linewidth];
+    \fi%
     \end{minipage}\par}{}%
   \endgroup\medskip
 }
@@ -117,14 +130,16 @@
   {\color{emphasis}\large\bfseries{#1}\par}\medskip
 }
 
+% v1.1.4: fixes inconsistent font size
 \newcommand{\cvevent}[4]{%
   {\large\color{emphasis}#1\par}
-  \smallskip
+  \smallskip\normalsize
+  \ifstrequal{#2}{}{}{
   \textbf{\color{accent}#2}\par
-  \smallskip
-  {\small\makebox[0.5\linewidth][l]{\faCalendar \hspace{0.5em}#3}%
-  \ifstrequal{#4}{}{}{\makebox[0.5\linewidth][l]{\faMapMarker\hspace{0.5em}#4}}\par}
-  \medskip
+  \smallskip}
+  \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendar \hspace{0.5em}#3}}}%
+  \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\faMapMarker\hspace{0.5em}#4}}}\par
+  \medskip\normalsize
 }
 
 \newcommand{\cvachievement}[3]{%
@@ -142,17 +157,17 @@
 \newcommand{\cvskill}[2]{%
 \textcolor{emphasis}{\textbf{#1}}\hfill
 \foreach \x in {1,...,5}{%
-  \space{\ifnumgreater{\x}{#2}{\color{body!30}}{\color{accent}}\faCircle}}\par%
+  \space{\ifnumgreater{\x}{#2}{\color{body!30}}{\color{accent}}\ratingmarker}}\par%
 }
 
 % Adapted from @Jake's answer at http://tex.stackexchange.com/a/82729/226
-\newcommand{\wheelchart}[3]{%
+\newcommand{\wheelchart}[4][0]{%
     \begingroup\centering
-    \def\innerradius{#2}%
-    \def\outerradius{#1}%
+    \def\innerradius{#3}%
+    \def\outerradius{#2}%
     % Calculate total
     \pgfmathsetmacro{\totalnum}{0}%
-    \foreach \value/\colour/\name in {#3} {%
+    \foreach \value/\colour/\name in {#4} {%
         \pgfmathparse{\value+\totalnum}%
         \global\let\totalnum=\pgfmathresult%
     }%
@@ -161,13 +176,14 @@
       % Calculate the thickness and the middle line of the wheel
       \pgfmathsetmacro{\wheelwidth}{\outerradius-\innerradius}
       \pgfmathsetmacro{\midradius}{(\outerradius+\innerradius)/2}
+      \pgfmathsetmacro{\totalrot}{-90 + #1}
 
       % Rotate so we start from the top
-      \begin{scope}[rotate=-90]
+      \begin{scope}[rotate=\totalrot]
 
       % Loop through each value set. \cumnum keeps track of where we are in the wheel
       \pgfmathsetmacro{\cumnum}{0}
-      \foreach \value/\width/\colour/\name in {#3} {
+      \foreach \value/\width/\colour/\name in {#4} {
             \pgfmathsetmacro{\newcumnum}{\cumnum + \value/\totalnum*360}
 
             % Calculate the percent value
@@ -202,16 +218,20 @@
 \newcommand{\cvref}[3]{%
   \smallskip
   \textcolor{emphasis}{\textbf{#1}}\par
-  \begin{description}[font=\color{accent},style=multiline,leftmargin=1.25em]
-  \item[\emailsymbol] #2
-  \item[\small\mailsymbol] #3
+  \begin{description}[font=\color{accent},style=multiline,leftmargin=1.35em]
+  \item[\normalfont\emailsymbol] #2
+  \item[\small\normalfont\mailsymbol] #3
   \end{description}
 %   \medskip
 }
 
 \newenvironment{cvcolumn}[1]{\begin{minipage}[t]{#1}\raggedright}{\end{minipage}}
 
-\RequirePackage[backend=biber,style=authoryear,sorting=ydnt]{biblatex}
+\RequirePackage[backend=biber,style=authoryear,sorting=ydnt,maxbibnames=99]{biblatex}
+%% For removing numbering entirely when using a numeric style
+% \setlength{\bibhang}{1em}
+% \DeclareFieldFormat{labelnumberwidth}{\makebox[\bibhang][l]{\itemmarker}}
+% \setlength{\biblabelsep}{0pt}
 \defbibheading{pubtype}{\cvsubsection{#1}}
 \renewcommand{\bibsetup}{\vspace*{-\baselineskip}}
 \AtEveryBibitem{\makebox[\bibhang][l]{\itemmarker}}
