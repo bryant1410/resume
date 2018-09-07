@@ -42,6 +42,11 @@
 
 \addbibresource{main.bib}
 
+\newif\ifpublic{}
+
+%\publictrue{}
+\publicfalse{}
+
 \begin{document}
 
 \name{Santiago Castro}
@@ -61,7 +66,7 @@
 \begin{fullwidth}
 \makecvheader{}
 
-Diligent Computer Scientist with experience both in the industry, highlighting a 3-year Android Development involvement, and the academy, with acknowledgments such as a \nth{2} place in a Best Paper Award. Passionate about Natural Language Processing and Machine Learning. Free Software fan.
+Diligent Computer Scientist with experience in Research and Development for both the industry and the academy. Passionate about NLP and ML.\@ Free Software fan.
 
 \end{fullwidth}
 
@@ -72,6 +77,8 @@ Diligent Computer Scientist with experience both in the industry, highlighting a
 \begin{itemize}
   \item Advisor: Rada Mihalcea
 \end{itemize}
+
+\divider{}
 
 \cvevent{B.E.\ in Computer Science}{Universidad de la República}{March 2010 --- May 2015}{Montevideo, Uruguay}
 
@@ -90,7 +97,7 @@ Diligent Computer Scientist with experience both in the industry, highlighting a
 \cvevent{Lead Machine Learning Engineer}{Xmartlabs}{September 2016 --- August 2018}{Montevideo, Uruguay}
 
 \begin{itemize}
-  \item I started a Machine Learning area, highly focused on Mobile Computer Vision projects. It included the pioneering idea, design and development leadership of the open source project Bender: a novel framework to run neural networks in iOS for real-time purposes, using the iPhone’s GPU.\@ This project, after its release, has subsequently seen the emerge competitors from big tech companies (i.e., Google’s TF Lite, Apple’s Core ML, Facebook’s Caffe2Go and Baidu’s MDL). Worked also on other projects for the Entertainment, Retail and Agro industries.
+  \item I started a Machine Learning area, highly focused on Mobile Computer Vision projects. It included the pioneering idea, design and development leadership of the open source project Bender: a novel framework to run neural networks in iOS for real-time purposes, using the iPhone’s GPU.\@ This project, after its release, has subsequently seen the emerge competitors from big tech companies (e.g., Google’s TF Lite, Apple’s Core ML, Facebook’s Caffe2Go and Baidu’s MDL). Worked also on other CV+ML projects for the Entertainment, Retail and Agro industries.
   \item \emph{Bender}: \url{https://github.com/xmartlabs/Bender}
   \item \emph{Dreamsnap}: \url{https://getdreamsnap.com}
 \end{itemize}
@@ -104,7 +111,9 @@ Diligent Computer Scientist with experience both in the industry, highlighting a
   \item \url{https://finpol.github.io}
 \end{itemize}
 
-\divider{}
+\pagebreak
+
+\cvsection[page2sidebar]{Work Experience (continued)}
 
 \cvevent{Teaching \& Research Assistant (``Asistente --- Grado 2'')}{Universidad de la República}{March 2014 --- August 2018}{Montevideo, Uruguay}
 
@@ -136,9 +145,9 @@ Diligent Computer Scientist with experience both in the industry, highlighting a
 
 \nocite{*}
 
-\printbibliography[heading=pubtype,title={\printinfo{\faBook}{Books}},type=book]
+%\printbibliography[heading=pubtype,title={\printinfo{\faBook}{Books}},type=book]
 
-\printbibliography[heading=pubtype,title={\printinfo{\faFileTextO}{Journal Articles}}, type=article]
+%\printbibliography[heading=pubtype,title={\printinfo{\faFileTextO}{Journal Articles}}, type=article]
 
 \printbibliography[heading=pubtype,title={\printinfo{\faGraduationCap}{Theses}},type=thesis]
 
@@ -148,33 +157,82 @@ Diligent Computer Scientist with experience both in the industry, highlighting a
 
 \printbibliography[heading=pubtype,title={\printinfo{\faAsterisk}{Non Refereed}},type=misc]
 
-\cvsection{Thesis Supervisions}
-
-\cvevent{Machine Classifier System of Answers According to their Relevance (``Sistema clasificador
-automático de respuestas según relevancia'')}{Undergraduate thesis, Universidad de la República}{August 2016 --- December 2017}{Montevideo, Uruguay}
-
-\begin{itemize}
-  \item \url{https://www.fing.edu.uy/inco/grupos/pln/prygrado/SCARR_Documento_Principal.pdf}
-\end{itemize}
-
 \cvsection{Talks}
 
 \cvevent{A High Coverage Method for Automatic False Friends Detection for Spanish and Portuguese}{VarDial 2018 @ COLING 2018}{August 2018}{Santa Fe, New Mexico, USA}
 
+\divider{}
+
 \cvevent{A Crowd-Annotated Spanish Corpus for Humor Analysis}{SocialNLP 2018 @ ACL 2018}{July 2018}{Melbourne, Australia}
 
-\cvevent{Mobile Machine Learning}{Machine Learning undergraduate course, University of the Republic}{May 2018}{Montevideo, Uruguay}
+\divider{}
 
-\cvevent{Mobile Machine Learning with Bender}{Deep Learning Applied to Computer Vision graduate course, University of the Republic}{October 2017}{Montevideo, Uruguay}
+\cvevent{Mobile Machine Learning}{Machine Learning undergraduate course, Universidad de la República}{May 2018}{Montevideo, Uruguay}
+
+\divider{}
+
+\cvevent{Mobile Machine Learning with Bender}{Deep Learning Applied to Computer Vision graduate course, Universidad de la República}{October 2017}{Montevideo, Uruguay}
+
+\divider{}
 
 \cvevent{Bender: Efficient Execution of Neural Networks in iOS}{Open Tech 2017}{September 2017}{Montevideo, Uruguay}
+
+\divider{}
 
 \cvevent{Humor Detection in Tweets}{9º Foro de Lenguas de ANEP}{December 2016}{Montevideo, Uruguay}
 
 \cvevent{Is This a Joke? Detecting Humor in Spanish Tweets}{IBERAMIA 2016}{November 2016}{San José, Costa Rica}
 
+\divider{}
+
 \cvevent{Automatic Detection of False Friends}{\nth{2} Workshop of RITA Project}{March 2016}{Porto Alegre, Rio Grande do Sul, Brazil}
 
-\cvevent{Humor Detection in Spanish Tweets}{Seminar of the Computer Science Department, University of the Republic}{June 2015}{Montevideo, Uruguay}
+\divider{}
+
+\cvevent{Humor Detection in Spanish Tweets}{Seminar of the Computer Science Department, Universidad de la República}{June 2015}{Montevideo, Uruguay}
+
+\divider{}
+
+\cvsection{Conferences \& Workshops Attended}
+
+\cvevent{\nth{27} International Conference on Computational Linguistics (COLING 2018)}{Santa Fe Community Convention Center}{August 2018}{Santa Fe, New Mexico, USA}
+
+\divider{}
+
+\cvevent{\nth{5} Workshop on NLP for Similar Languages, Varieties and Dialects (VarDial 2018)}{COLING 2018, Santa Fe Community Convention Center}{August 2018}{Santa Fe, New Mexico, USA}
+
+\divider{}
+
+\cvevent{\nth{6} International Workshop on Natural Language Processing for Social Media (SocialNLP
+2018)}{ACL 2018, Melbourne Convention and Exhibition Centre}{July 2018}{Melbourne, Australia}
+
+\divider{}
+
+\cvevent{\nth{56} Annual Meeting of the Association for Computational Linguistics (ACL 2018)}
+{Melbourne Convention and Exhibition Centre}{July 2018}{Melbourne, Australia}
+
+\divider{}
+
+\cvevent{9º Foro de Lenguas de ANEP}{Instituto de Perfeccionamiento y Estudios Superiores}{December 2016}{Montevideo, Uruguay}
+
+\divider{}
+
+\cvevent{\nth{16} Ibero-American Conference on Artificial Intelligence (IBERAMIA 2016)}{Universidad Nacional de Costa Rica}{November 2016}{San José, Costa Rica}
+
+\divider{}
+
+\cvevent{\nth{2} Workshop of RITA Project --- RIch Text Analysis through Enhanced Tools based on Lexical Resources}{Universidade Federal do Rio Grande do Sul}{March 2016}{Porto Alegre, Rio Grande do Sul, Brazil}
+
+\cvsection{References}
+
+\ifpublic{}
+  Available upon request.
+\else
+  \input{ref}
+\fi
+
+\divider{}
+
+(Resume last update: Sept. \nth{6}, 2018)
 
 \end{document}
