@@ -31,6 +31,9 @@
 \renewcommand{\itemmarker}{{\small\textbullet}}
 \renewcommand{\ratingmarker}{\faCircle}
 
+\newcommand{\graduationcapsymbol}{\faGraduationCap}
+\newcommand{\googlescholar}[1]{\printinfo{\graduationcapsymbol}{#1}}
+
 \newcommand{\stackoverflowsymbol}{\faStackOverflow}
 \newcommand{\stackoverflow}[1]{\printinfo{\stackoverflowsymbol}{#1}}
 
@@ -51,13 +54,14 @@
 
 \name{Santiago Castro}
 \tagline{PhD Student}
-\photo{2.5cm}{me}
+%\photo{2.5cm}{me}
 \personalinfo{%
   \email{\href{mailto:sacastro@umich.edu}{sacastro@umich.edu}}
   %\dateofbirth{Sept. \nth{29}, 1991}
   \location{Ann Arbor, MI, USA}
   %\home{Montevideo, Uruguay}
   \homepage{\href{https://santi.uy}{santi.uy}}
+  \googlescholar{\href{https://scholar.google.com/citations?user=i2LNBfUAAAAJ}{Santiago Castro}}
   \github{\href{https://github.com/bryant1410}{bryant1410}}
   \twitter{\href{https://twitter.com/bryant1410}{bryant1410}}
   \linkedin{\href{https://linkedin.com/in/santiagocastroserra}{santiagocastroserra}}
@@ -77,6 +81,7 @@ Diligent Computer Scientist with experience in Research and Development for both
 
 \begin{itemize}
   \item Advisor: Rada Mihalcea
+  \item My main research interest is in holistically representing \textbf{multimodal} sources (i.e., Language and Vision) to tackle multiple types of tasks. I am also interested in \textbf{Subjectivity}, in particular in problems involving \textbf{Humor} and \textbf{Sarcasm}; and in \textbf{Reasoning}.
 \end{itemize}
 
 \divider{}
@@ -144,17 +149,21 @@ Diligent Computer Scientist with experience in Research and Development for both
 
 \cvsection{Publications}
 
+2 conference and 5 workshop papers. \href{https://scholar.google.com/citations?user=i2LNBfUAAAAJ}{54 citations and h-index 5 in Google Scholar}.
+
+\vspace{3mm}
+
 \nocite{*}
 
 %\printbibliography[heading=pubtype,title={\printinfo{\faBook}{Books}},type=book]
 
 %\printbibliography[heading=pubtype,title={\printinfo{\faFileTextO}{Journal Articles}}, type=article]
 
-\printbibliography[heading=pubtype,title={\printinfo{\faGraduationCap}{Theses}},type=thesis]
-
 \printbibliography[heading=pubtype,title={\printinfo{\faGroup}{Conference Proceedings}},type=inproceedings]
 
 \printbibliography[heading=pubtype,title={\printinfo{\faGroup}{Workshop Proceedings}},type=incollection]
+
+\printbibliography[heading=pubtype,title={\printinfo{\faGraduationCap}{Theses}},type=thesis]
 
 \printbibliography[heading=pubtype,title={\printinfo{\faAsterisk}{Non Refereed}},type=misc]
 
@@ -182,6 +191,8 @@ Diligent Computer Scientist with experience in Research and Development for both
 
 \cvevent{Humor Detection in Tweets}{9º Foro de Lenguas de ANEP}{December 2016}{Montevideo, Uruguay}
 
+\divider{}
+
 \cvevent{Is This a Joke? Detecting Humor in Spanish Tweets}{IBERAMIA 2016}{November 2016}{San José, Costa Rica}
 
 \divider{}
@@ -192,9 +203,11 @@ Diligent Computer Scientist with experience in Research and Development for both
 
 \cvevent{Humor Detection in Spanish Tweets}{Seminar of the Computer Science Department, Universidad de la República}{June 2015}{Montevideo, Uruguay}
 
-\divider{}
-
 \cvsection{Conferences \& Workshops Attended}
+
+\cvevent{\nth{57} Annual Meeting of the Association for Computational Linguistics (ACL 2019)}{Fortezza da Basso}{July 2019}{Florence, Italy}
+
+\divider{}
 
 \cvevent{2019 Annual Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL-HLT 2019)}{Hyatt Regency}{June 2019}{Minneapolis, USA}
 
