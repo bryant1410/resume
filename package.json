@@ -8,7 +8,7 @@
     "build:html": "make4ht -l main.tex",
     "build": "latexmk main.tex",
     "start": "latexmk -pvc main.tex",
-    "dist": "cp output/main.pdf dist",
+    "dist": "mkdir -p dist && cp output/main.pdf dist/",
     "predeploy": "npm run build && npm run dist",
     "deploy": "gh-pages -d dist"
   },
