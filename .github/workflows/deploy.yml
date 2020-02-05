@@ -1,0 +1,24 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - run: yarn install
+    - uses: xu-cheng/latex-action@1
+      with:
+        root_file: main.tex
+    - run: yarn run predeploy
+    - uses: :maxheld83/ghpages@v0.2
+      with:
+        env:
+          BUILD_DIR: "dist/"
+        secrets:
+          - "GH_PAT"
