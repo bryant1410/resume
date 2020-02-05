@@ -19,5 +19,4 @@ jobs:
     - uses: maxheld83/ghpages@v0.2
       with:
         BUILD_DIR: dist
-        secrets:
-          - GH_PAT
+        secrets: GH_PAT
