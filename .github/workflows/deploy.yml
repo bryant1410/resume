@@ -18,7 +18,6 @@ jobs:
     - run: yarn run predeploy
     - uses: maxheld83/ghpages@v0.2
       with:
-        env:
-          BUILD_DIR: dist
+        BUILD_DIR: dist
         secrets:
           - GH_PAT
