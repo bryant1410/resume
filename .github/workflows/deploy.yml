@@ -10,7 +10,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
-        node-version: '12.x'
+        node-version: 12.x
     - run: yarn install
     - uses: xu-cheng/latex-action@1
       with:
@@ -19,6 +19,6 @@ jobs:
     - uses: :maxheld83/ghpages@v0.2
       with:
         env:
-          BUILD_DIR: "dist/"
+          BUILD_DIR: dist
         secrets:
-          - "GH_PAT"
+          - GH_PAT
