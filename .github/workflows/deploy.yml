@@ -16,7 +16,7 @@ jobs:
       with:
         root_file: main.tex
     - run: yarn run predeploy
-    - uses: maxheld83/ghpages@v0.2
+    - uses: maxheld83/ghpages@master
       with:
         BUILD_DIR: dist
         secrets: GH_PAT
