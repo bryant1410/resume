@@ -12,7 +12,7 @@ jobs:
       with:
         node-version: 12.x
     - run: yarn install
-    - uses: xu-cheng/latex-action@v1
+    - uses: xu-cheng/latex-action@master
       with:
         root_file: main.tex
     - run: yarn run predeploy
