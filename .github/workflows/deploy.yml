@@ -20,6 +20,6 @@ jobs:
       run: yarn run dist
     - name: Commit dist/ to gh-pages branch
       uses: maxheld83/ghpages@master
-      with:
-        BUILD_DIR: dist
-        secrets: GH_PAT
+      env:
+        BUILD_DIR: dist/
+        GH_PAT: ${{ secrets.GH_PAT }}
