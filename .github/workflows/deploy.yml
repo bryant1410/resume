@@ -13,13 +13,13 @@ jobs:
         node-version: 12.x
     - run: yarn install
     - name: Compile
-      uses: xu-cheng/latex-action@master
+      uses: xu-cheng/latex-action@v2
       with:
         root_file: main.tex
     - name: Copy the PDF to dist/
       run: yarn run dist
     - name: Commit dist/ to gh-pages branch
-      uses: maxheld83/ghpages@master
+      uses: maxheld83/ghpages@@v0.3.0
       env:
         BUILD_DIR: dist/
         GH_PAT: ${{ secrets.GH_PAT }}
