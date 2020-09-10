@@ -13,7 +13,7 @@ jobs:
         node-version: 12.x
     - run: yarn install
     - name: Compile
-      uses: xu-cheng/latex-action@v2
+      uses: xu-cheng/latex-action@2.1.0
       with:
         root_file: main.tex
     - name: Copy the PDF to dist/
