@@ -282,7 +282,7 @@
 
 \newenvironment{cvcolumn}[1]{\begin{minipage}[t]{#1}\raggedright}{\end{minipage}}
 
-\RequirePackage[backend=biber,style=authoryear,sorting=ydnt,maxnames=10]{biblatex}
+\RequirePackage[backend=biber,style=authoryear,sorting=ydnt,maxnames=10,url=false]{biblatex}
 %% For removing numbering entirely when using a numeric style
 % \setlength{\bibhang}{1em}
 % \DeclareFieldFormat{labelnumberwidth}{\makebox[\bibhang][l]{\itemmarker}}
