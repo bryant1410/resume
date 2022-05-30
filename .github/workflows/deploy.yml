@@ -20,6 +20,8 @@ jobs:
       run: yarn run dist
     - name: Setup upterm session
       uses: lhotari/action-upterm@v1
+      with:
+        limit-access-to-actor: true
     - name: Commit dist/ to gh-pages branch
       uses: maxheld83/ghpages@v0.3.0
       env:
