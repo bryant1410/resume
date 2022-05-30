@@ -115,7 +115,7 @@
 @inproceedings{reasons,
   title = "WhyAct: Identifying Action Reasons in Lifestyle Vlogs",
   author = "Oana Ignat and \underline{Santiago Castro} and Hanwen Miao and Weiji Li and Rada Mihalcea",
-  booktitle = "EMNLP (main conf.)",
+  booktitle = "EMNLP",
   month = nov,
   year = "2021",
   publisher = "Association for Computational Linguistics",
@@ -136,8 +136,19 @@
   keywords = {action duration, vlogs, multimodal processing, video processing, action temporal localization, natural language processing}
 }
 
+@misc{https://doi.org/10.48550/arxiv.2203.13371,
+  doi = {10.48550/ARXIV.2203.13371},
+  url = {https://arxiv.org/abs/2203.13371},
+  author = {\underline{Castro, Santiago} and Heilbron, Fabian Caba},
+  keywords = {Computer Vision and Pattern Recognition (cs.CV), FOS: Computer and information sciences, FOS: Computer and information sciences},
+  title = {{FitCLIP}: Refining Large-Scale Pretrained Image-Text Models for Zero-Shot Video Understanding Tasks},
+  publisher = {arXiv},
+  year = {2022},
+  copyright = {Creative Commons Attribution 4.0 International}
+}
+
 @inproceedings{castro-etal-2022-fill,
-  title = "FIBER: Fill-in-the-Blanks as a Challenging Video Understanding Evaluation Framework",
+  title = "{FIBER}: Fill-in-the-Blanks as a Challenging Video Understanding Evaluation Framework",
   author = "\underline{Castro, Santiago} and
     Wang, Ruoyao  and
     Huang, Pingxuan  and
@@ -146,10 +157,12 @@
     Liu, Nan  and
     Stroud, Jonathan C.  and
     Mihalcea, Rada",
-  booktitle = "ACL (main conf.)",
+  booktitle = "ACL",
   month = may,
   year = "2022",
-  address = "Online and Dublin, Ireland",
+  address = "Dublin, Ireland",
   publisher = "Association for Computational Linguistics",
-  note = "Accepted",
+  url = "https://aclanthology.org/2022.acl-long.209",
+  pages = "2925--2940",
+  abstract = "We propose fill-in-the-blanks as a video understanding evaluation framework and introduce FIBER {--} a novel dataset consisting of 28,000 videos and descriptions in support of this evaluation framework. The fill-in-the-blanks setting tests a model{'}s understanding of a video by requiring it to predict a masked noun phrase in the caption of the video, given the video and the surrounding text. The FIBER benchmark does not share the weaknesses of the current state-of-the-art language-informed video understanding tasks, namely: (1) video question answering using multiple-choice questions, where models perform relatively well because they exploit linguistic biases in the task formulation, thus making our framework challenging for the current state-of-the-art systems to solve; and (2) video captioning, which relies on an open-ended evaluation framework that is often inaccurate because system answers may be perceived as incorrect if they differ in form from the ground truth. The FIBER dataset and our code are available at https://lit.eecs.umich.edu/fiber/.",
 }
