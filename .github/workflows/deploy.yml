@@ -18,8 +18,8 @@ jobs:
         root_file: main.tex
     - name: Copy the PDF to dist/
       run: yarn run dist
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
+#    - name: Setup tmate session
+#      uses: mxschmitt/action-tmate@v3
     - name: Commit dist/ to gh-pages branch
       uses: maxheld83/ghpages@v0.3.0
       env:
