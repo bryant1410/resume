@@ -282,6 +282,9 @@
 
 \newenvironment{cvcolumn}[1]{\begin{minipage}[t]{#1}\raggedright}{\end{minipage}}
 
+% From Santi: import "inputenc" here so it's before BibLaTeX.
+\RequirePackage[utf8]{inputenc}
+
 \RequirePackage[backend=biber,style=authoryear,sorting=ydnt,maxnames=10,url=false]{biblatex}
 %% For removing numbering entirely when using a numeric style
 % \setlength{\bibhang}{1em}
