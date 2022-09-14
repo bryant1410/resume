@@ -285,7 +285,7 @@
 % From Santi: import "inputenc" here so it's before BibLaTeX.
 \RequirePackage[utf8]{inputenc}
 
-\RequirePackage[backend=biber,style=authoryear,sorting=ydnt,maxnames=10,url=false]{biblatex}
+\RequirePackage[backend=biber,style=authoryear,sorting=ydnt,maxnames=10,minnames=5,url=false]{biblatex}
 %% For removing numbering entirely when using a numeric style
 % \setlength{\bibhang}{1em}
 % \DeclareFieldFormat{labelnumberwidth}{\makebox[\bibhang][l]{\itemmarker}}
