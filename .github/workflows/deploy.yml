@@ -8,8 +8,8 @@ permissions:
   contents: read
   pages: write
   id-token: write
-concurrency:  # Only one deployment at a time
-  group: "pages"
+concurrency:
+  group: pages  # Only allow one deployment at a time.
   cancel-in-progress: false  # Don't cancel in-progress ones in case later ones fail.
 jobs:
   deploy:
@@ -22,7 +22,7 @@ jobs:
         root_file: main.tex
     - name: Copy the PDF to _site/
       run: mkdir -p _site && cp output/main.pdf _site/
-    - name: Prepare GH Pages content
+    - name: Prepare the GH Pages content
       uses: actions/upload-pages-artifact@v2
     - name: Deploy to GH Pages
       uses: actions/deploy-pages@v2
