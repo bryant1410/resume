@@ -1,15 +1,7 @@
 $pdf_mode = 1;
-
 $bibtex_use = 2;
-
-#$aux_dir = './aux';
-
-$out_dir = './output';
-
-$ean_ext = 'acn acr alg aux bbl bcf blg brf fdb_latexmk glg glo gls idx ilg ind ist lof log lot out run.xml toc dvi';
-
-# For svg package and for LuaLatex
+$out_dir = 'output';
+push @generated_exts, 'run.xml';
 $latex = 'lualatex --shell-escape';
 $pdflatex = 'lualatex --shell-escape';
-
-$pdf_previewer = 'xdg-open'
+$pdf_previewer = 'xdg-open';
