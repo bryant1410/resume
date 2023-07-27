@@ -8,16 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 16
-    - run: yarn install
     - name: Compile
       uses: xu-cheng/latex-action@v2
       with:
         root_file: main.tex
     - name: Copy the PDF to dist/
-      run: yarn run dist
+      run: mkdir -p dist && cp output/main.pdf dist/
     - name: Commit dist/ to gh-pages branch
       uses: bryant1410/ghpages@patch-1
       env:
