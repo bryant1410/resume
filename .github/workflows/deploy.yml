@@ -3,6 +3,14 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:  # To allow manual runs.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:  # Only one deployment at a time
+  group: "pages"
+  cancel-in-progress: false  # Don't cancel in-progress ones in case later ones fail.
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -12,10 +20,9 @@ jobs:
       uses: xu-cheng/latex-action@v2
       with:
         root_file: main.tex
-    - name: Copy the PDF to dist/
-      run: mkdir -p dist && cp output/main.pdf dist/
-    - name: Commit dist/ to gh-pages branch
-      uses: bryant1410/ghpages@patch-1
-      env:
-        BUILD_DIR: dist/
-        GH_PAT: ${{ secrets.GH_PAT }}
+    - name: Copy the PDF to _site/
+      run: mkdir -p _site && cp output/main.pdf _site/
+    - name: Prepare GH Pages content
+      uses: actions/upload-pages-artifact@v2
+    - name: Deploy to GH Pages
+      uses: actions/deploy-pages@v2
