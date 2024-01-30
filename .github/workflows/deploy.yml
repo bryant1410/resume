@@ -23,6 +23,6 @@ jobs:
     - name: Copy the PDF to _site/
       run: mkdir -p _site && cp output/main.pdf _site/
     - name: Prepare the GH Pages content
-      uses: actions/upload-pages-artifact@v2
+      uses: actions/upload-pages-artifact@v3
     - name: Deploy to GH Pages
-      uses: actions/deploy-pages@v2
+      uses: actions/deploy-pages@v4
