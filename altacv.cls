@@ -285,7 +285,7 @@
 % From Santi: import "inputenc" here so it's before BibLaTeX.
 \RequirePackage[utf8]{inputenc}
 
-\RequirePackage[backend=biber,style=authoryear,sorting=ymddnt,maxnames=10,minnames=5,url=false]{biblatex}
+\RequirePackage[backend=biber,style=authoryear,sorting=ymddnt,maxnames=10,minnames=5,giveninits=true,url=false]{biblatex}
 
 % From Santi: to order by year and month first.
 % See https://tex.stackexchange.com/a/140641/56795 and https://tex.stackexchange.com/a/46879/56795
