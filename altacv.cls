@@ -182,7 +182,7 @@
 
 \newcommand{\cvsubsection}[1]{%
   \smallskip%
-  {\color{emphasis}\large\bfseries{#1}\par}\medskip
+  {\color{emphasis}#1\par}\medskip
 }
 
 % v1.1.4: fixes inconsistent font size
