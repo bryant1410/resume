@@ -197,6 +197,15 @@
   \medskip\normalsize
 }
 
+\newcommand{\cvsmallevent}[4]{%
+  \small%
+  {\color{emphasis}#1}%
+  \ifstrequal{#2}{}{}{, \color{accent}#2}%
+  \ifstrequal{#3}{}{}{, {\footnotesize#3}}%
+  \ifstrequal{#4}{}{}{, {\footnotesize#4}}%
+  \par\medskip\small
+}
+
 \newcommand{\cvachievement}[3]{%
   \begin{tabularx}{\linewidth}{@{}p{2em} @{\hspace{1ex}} >{\raggedright\arraybackslash}X@{}}
   \multirow{2}{*}{\Large\color{accent}#1} & \bfseries\textcolor{emphasis}{#2}\\
