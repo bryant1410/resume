@@ -324,7 +324,6 @@
 }
 
 \DeclareFieldFormat*{title}{\textit{``#1''}}
-\DeclareFieldFormat{journaltitle}{#1\isdot}
 
 %% For removing numbering entirely when using a numeric style
 % \setlength{\bibhang}{1em}
