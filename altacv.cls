@@ -323,6 +323,8 @@
   }
 }
 
+\DeclareFieldFormat*{title}{\textit{``#1''}}
+
 %% For removing numbering entirely when using a numeric style
 % \setlength{\bibhang}{1em}
 % \DeclareFieldFormat{labelnumberwidth}{\makebox[\bibhang][l]{\itemmarker}}
