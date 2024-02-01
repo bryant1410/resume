@@ -207,8 +207,8 @@
 }
 
 \newcommand{\cvachievement}[3]{%
-  \begin{tabularx}{\linewidth}{@{}p{2em} @{\hspace{1ex}} >{\raggedright\arraybackslash}X@{}}
-  \multirow{2}{*}{\Large\color{accent}#1} & \bfseries\textcolor{emphasis}{#2}\\
+  \begin{tabularx}{\linewidth}{@{}p{1.5em} @{\hspace{1ex}} >{\raggedright\arraybackslash}X@{}}
+  \multirow{2}{*}{\large\color{accent}#1} & \textcolor{emphasis}{#2}\\
   & #3
   \end{tabularx}%
   \smallskip
