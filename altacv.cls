@@ -186,31 +186,30 @@
 }
 
 % v1.1.4: fixes inconsistent font size
-\newcommand{\cvevent}[4]{%
+\newcommand{\cvevent}[5]{%
   {\normalsize\color{emphasis}#1}%
   \normalsize%
   \ifstrequal{#2}{}{}{%
-  , \textbf{\color{accent}#2}}\par%
-  \smallskip%
-  \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendar\hspace{0.5em}#3}}}%
-  \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\faMapMarker\hspace{0.5em}#4}}}\par%
-  \medskip\normalsize
+  , \textbf{\color{accent}#2}}%
+  \ifstrequal{#3}{}{}{{, \small#3}}%
+  \ifstrequal{#4}{}{}{{,~\small#4}}\par%
+  \smallskip
+  {\small#5}
+  \bigskip\normalsize
 }
 
 \newcommand{\cvsmallevent}[4]{%
   \small%
   {\color{emphasis}#1}%
-  \ifstrequal{#2}{}{}{, \color{accent}#2}%
+  \ifstrequal{#2}{}{}{, \textbf{\color{accent}#2}}%
   \ifstrequal{#3}{}{}{, {\footnotesize#3}}%
   \ifstrequal{#4}{}{}{, {\footnotesize#4}}%
   \par\medskip\small
 }
 
-\newcommand{\cvachievement}[3]{%
-  \begin{tabularx}{\linewidth}{@{}p{1.5em} @{\hspace{1ex}} >{\raggedright\arraybackslash}X@{}}
-  \multirow{2}{*}{\large\color{accent}#1} & \textcolor{emphasis}{#2}\\
-  & #3
-  \end{tabularx}%
+\newcommand{\cvachievement}[2]{%
+  \small%
+  \textcolor{emphasis}{#1}, #2%
   \smallskip
 }
 
