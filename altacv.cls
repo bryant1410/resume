@@ -174,10 +174,10 @@
 \renewenvironment{quote}{\color{accent}\itshape\large}{\par}
 
 \newcommand{\cvsection}[2][]{%
-  \medskip%
+  \ifstrequal{#2}{}{}{\medskip}%
   \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}%
-  {\color{heading}\normalsize\bfseries\MakeUppercase{#2}}\\[-1ex]%
-  {\color{heading}\rule{\linewidth}{.5pt}\par}\medskip
+  \ifstrequal{#2}{}{}{{\color{heading}\normalsize\bfseries\MakeUppercase{#2}}\\[-1ex]%
+  {\color{heading}\rule{\linewidth}{.5pt}\par}\medskip}
 }
 
 \newcommand{\cvsubsection}[1]{%
