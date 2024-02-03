@@ -195,24 +195,23 @@
 
 % v1.1.4: fixes inconsistent font size
 \newcommand{\cvevent}[5]{%
-  {\normalsize\color{emphasis}#1}%
   \normalsize%
-  \ifstrequal{#2}{}{}{%
-  , \textbf{\color{accent}#2}}%
-  \ifstrequal{#3}{}{}{{, \small#3}}%
-  \ifstrequal{#4}{}{}{{,~\small#4}}\par%
-  \smallskip
-  {\small#5}
-  \bigskip\normalsize
+  {\color{emphasis}#1}%
+  \ifstrequal{#2}{}{}{, \textbf{\color{accent}#2}}%
+  \ifstrequal{#3}{}{}{{, {\small#3}}}%
+  \ifstrequal{#4}{}{}{{,~{\small#4}}}\par%
+  \ifstrequal{#5}{}{}{\smallskip \small#5}%
+  \bigskip
 }
 
-\newcommand{\cvsmallevent}[4]{%
+\newcommand{\cvsmallevent}[5]{%
   \small%
   {\color{emphasis}#1}%
   \ifstrequal{#2}{}{}{, \textbf{\color{accent}#2}}%
   \ifstrequal{#3}{}{}{, {\footnotesize#3}}%
-  \ifstrequal{#4}{}{}{, {\footnotesize#4}}%
-  \par\medskip\small
+  \ifstrequal{#4}{}{}{,~{\footnotesize#4}}\par%
+  \ifstrequal{#5}{}{}{\smallskip \footnotesize#5}%
+  \medskip
 }
 
 \newcommand{\cvachievement}[2]{%
