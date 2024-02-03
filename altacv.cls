@@ -36,6 +36,8 @@
 \LoadClass{extarticle}
 
 \RequirePackage[margin=2cm]{geometry}
+\geometry{left=1cm,right=9cm,marginparwidth=6.8cm,marginparsep=1.2cm,top=1cm,bottom=1cm}
+
 \RequirePackage{fontawesome}
 \RequirePackage{ifxetex,ifluatex}
 \RequirePackage{scrlfile}
@@ -96,10 +98,13 @@
 
 \RequirePackage{xcolor}
 
-\colorlet{accent}{blue!70!black}
-\colorlet{heading}{black}
-\colorlet{emphasis}{black}
-\colorlet{body}{black!80!white}
+\definecolor{Vivid}{HTML}{000000}
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\colorlet{heading}{Vivid}
+\colorlet{accent}{Vivid}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
 \newcommand{\itemmarker}{{\small\textbullet}}
 \newcommand{\ratingmarker}{\faCircle}
 
@@ -147,6 +152,9 @@
 \newcommand{\github}[1]{\printinfo{\githubsymbol}{#1}}
 \newcommand{\orcid}[1]{\printinfo{\orcidsymbol}{#1}}
 \newcommand{\location}[1]{\printinfo{\locationsymbol}{#1}}
+\newcommand{\googlescholar}[1]{\printinfo{\faGraduationCap}{#1}}
+\newcommand{\stackoverflow}[1]{\printinfo{\faStackOverflow}{#1}}
+\newcommand{\home}[1]{\printinfo{\faHome}{#1}}
 
 \newcommand{\personalinfo}[1]{\def\@personalinfo{#1}}
 
