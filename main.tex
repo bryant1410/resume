@@ -23,25 +23,6 @@
 \AtEveryBibitem{\clearlist{publisher}}
 \AtEveryBibitem{\clearlist{location}}
 
-\makeatletter
-\def\mblx@yearfrom{-1000}
-\def\mblx@yearto{3000}
-
-\newrobustcmd*{\setcheckfromtorange}[2]{%
-  \def\mblx@yearfrom{#1}%
-  \def\mblx@yearto{#2}%
-}
-
-\defbibcheck{fromto}{%
-  \iffieldint{year}
-    {\ifnumless{\thefield{year}}{\mblx@yearfrom}
-       {\skipentry}
-       {\ifnumgreater{\thefield{year}}{\mblx@yearto}
-          {\skipentry}
-          {}}}
-    {\skipentry}}
-\makeatother
-
 \newif\ifpublic{}
 
 \publictrue{}
