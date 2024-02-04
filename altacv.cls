@@ -101,10 +101,12 @@
 \definecolor{Vivid}{HTML}{000000}
 \definecolor{SlateGrey}{HTML}{2E2E2E}
 \definecolor{LightGrey}{HTML}{666666}
+\definecolor{LighterGrey}{HTML}{888888}
 \colorlet{heading}{Vivid}
 \colorlet{accent}{Vivid}
 \colorlet{emphasis}{SlateGrey}
 \colorlet{body}{LightGrey}
+\colorlet{inner-body}{LighterGrey}
 \newcommand{\itemmarker}{{\small\textbullet}}
 \newcommand{\ratingmarker}{\faCircle}
 
@@ -200,7 +202,7 @@
   \ifstrequal{#2}{}{}{, \textbf{\color{accent}#2}}%
   \ifstrequal{#3}{}{}{{, {\small#3}}}%
   \ifstrequal{#4}{}{}{{,~{\small#4}}}\par%
-  \ifstrequal{#5}{}{}{\smallskip \small#5}%
+  \ifstrequal{#5}{}{}{\smallskip {\color{inner-body}\small#5}}%
   \bigskip
 }
 
@@ -210,7 +212,7 @@
   \ifstrequal{#2}{}{}{, \textbf{\color{accent}#2}}%
   \ifstrequal{#3}{}{}{, {\footnotesize#3}}%
   \ifstrequal{#4}{}{}{,~{\footnotesize#4}}\par%
-  \ifstrequal{#5}{}{}{\smallskip \footnotesize#5}%
+  \ifstrequal{#5}{}{}{\smallskip {\color{inner-body}\footnotesize#5}}%
   \medskip
 }
 
