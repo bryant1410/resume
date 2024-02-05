@@ -302,7 +302,11 @@
 % From Santi: import "inputenc" here so it's before BibLaTeX.
 \RequirePackage[utf8]{inputenc}
 
-\RequirePackage[backend=biber,style=authoryear,sorting=ymddnt,minnames=5,maxnames=9,giveninits=true,date=year,url=false]{biblatex}
+% For US-style quotes.
+\RequirePackage[american]{babel}
+\RequirePackage{csquotes}
+
+\RequirePackage[backend=biber,style=mla,sorting=ymddnt,minnames=5,maxnames=9,giveninits=true,date=year,isbn=false,url=false,doi=false,eprint=false]{biblatex}
 
 % From Santi: to order by year and month first.
 % See https://tex.stackexchange.com/a/140641/56795 and https://tex.stackexchange.com/a/46879/56795
@@ -346,7 +350,7 @@
 % \setlength{\biblabelsep}{0pt}
 \defbibheading{pubtype}{\cvsubsection{#1}}
 \renewcommand{\bibsetup}{\vspace*{-\baselineskip}}
-\AtEveryBibitem{\makebox[\bibhang][l]{\itemmarker}}
+% \AtEveryBibitem{\makebox[\bibhang][l]{\itemmarker}}
 \setlength{\bibitemsep}{0.25\baselineskip}
 
 % v1.1.2: make it easier to add a sidebar aligned with top of next page
@@ -362,3 +366,22 @@
   \color{body}
   \raggedright
 }
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage{microtype}
+\RequirePackage{hyperref}
+\RequirePackage[super]{nth}
+
+\setmainfont{Lato}
+
+\hypersetup{colorlinks,linkcolor={cyan},citecolor={cyan},urlcolor={cyan}}
+
+\DeclareNameAlias{author}{given-family}
+\DeclareFieldFormat*{titlecase}{#1}
+\DeclareFieldFormat{booktitle}{#1\nopunct} % Remove the italics.
+\DeclareFieldFormat{pages}{}
+\DeclareFieldFormat{url}{}
+\DeclareListFormat{publisher}{}
+\DeclareFieldFormat*{date}{#1\addperiod}
+
+\AtBeginBibliography{\small}
