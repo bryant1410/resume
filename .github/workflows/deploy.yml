@@ -15,14 +15,14 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Compile
-      uses: xu-cheng/latex-action@v3
+      uses: xu-cheng/latex-action@v4
       with:
         root_file: main.tex
     - name: Copy the PDF to _site/
       run: mkdir -p _site && cp output/main.pdf _site/
     - name: Prepare the GH Pages content
-      uses: actions/upload-pages-artifact@v3
+      uses: actions/upload-pages-artifact@v5
     - name: Deploy to GH Pages
-      uses: actions/deploy-pages@v4
+      uses: actions/deploy-pages@v5
