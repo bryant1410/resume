@@ -3,7 +3,7 @@
 To compile:
 
 ```bash
-latexmk main.tex
+latexmk
 ```
 
 ## License
