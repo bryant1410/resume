@@ -3,3 +3,4 @@ $bibtex_use = 2;
 $out_dir = 'output';
 $latex = 'lualatex --shell-escape';
 $pdflatex = 'lualatex --shell-escape';
+@default_files = ('main.tex');
