@@ -418,3 +418,32 @@
 \DeclareFieldFormat*{date}{#1\addperiod}
 
 \AtBeginBibliography{\small}
+
+% v1.6.5 Provide ability to highlight names in publication list
+\RequirePackage{pgffor}
+\def\my@namelist{}
+\newcommand{\mynames}[1]{\def\my@namelist{#1}}
+\newtoggle{boldname}
+
+\newcommand{\altacv@makeboldnames}{%
+  \renewcommand*{\mkbibnamefamily}[1]{%
+    \global\togglefalse{boldname}%
+    \ifdefempty{\my@namelist}{}{%
+      \foreach \my@fname / \my@gname in \my@namelist {%
+        \ifboolexpr{ test {\ifdefstrequal{\namepartfamily}{\my@fname}}
+                     and
+                     test {\ifdefstrequal{\namepartgiven}{\my@gname}}}
+          {\global\toggletrue{boldname}}{}%
+      }%
+    }%
+    \iftoggle{boldname}{\textbf{##1}}{##1}%
+  }%
+  % v1.7.4 will handle "von" "van" etc prefixes and "Jr" etc suffixes too
+  \let\mkbibnamegiven\mkbibnamefamily%
+  \let\mkbibnameprefix\mkbibnamefamily%
+  \let\mkbibnamesuffix\mkbibnamefamily%
+}
+
+\AtBeginDocument{%
+  \altacv@makeboldnames
+}
