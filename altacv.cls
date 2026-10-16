@@ -140,23 +140,25 @@
 \newcommand{\orcidsymbol}{\aiOrcid}
 \newcommand{\mailsymbol}{\faEnvelope}
 
-\newcommand{\printinfo}[2]{\mbox{\textcolor{accent}{\normalfont #1}\hspace{0.5em}#2\hspace{2em}}}
+\newcommand{\printinfo}[3][]{%
+  \mbox{\textcolor{accent}{\normalfont\ifstrempty{#1}{#2}{\BeginAccSupp{method=escape,ActualText={#1:\space}}#2\EndAccSupp{}}}\hspace{0.5em}#3\hspace{2em}}%
+}
 
 \newcommand{\name}[1]{\def\@name{#1}}
 \newcommand{\tagline}[1]{\def\@tagline{#1}}
 \newcommand{\photo}[2]{\def\@photo{#2}\def\@photodiameter{#1}}
-\newcommand{\email}[1]{\printinfo{\emailsymbol}{#1}}
-\newcommand{\mailaddress}[1]{\printinfo{\mailsymbol}{#1}}
-\newcommand{\phone}[1]{\printinfo{\phonesymbol}{#1}}
-\newcommand{\homepage}[1]{\printinfo{\homepagesymbol}{#1}}
-\newcommand{\twitter}[1]{\printinfo{\twittersymbol}{#1}}
-\newcommand{\linkedin}[1]{\printinfo{\linkedinsymbol}{#1}}
-\newcommand{\github}[1]{\printinfo{\githubsymbol}{#1}}
-\newcommand{\orcid}[1]{\printinfo{\orcidsymbol}{#1}}
-\newcommand{\location}[1]{\printinfo{\locationsymbol}{#1}}
-\newcommand{\googlescholar}[1]{\printinfo{\faGraduationCap}{#1}}
-\newcommand{\stackoverflow}[1]{\printinfo{\faStackOverflow}{#1}}
-\newcommand{\home}[1]{\printinfo{\faHome}{#1}}
+\newcommand{\email}[1]{\printinfo[Email]{\emailsymbol}{#1}}
+\newcommand{\mailaddress}[1]{\printinfo[Address]{\mailsymbol}{#1}}
+\newcommand{\phone}[1]{\printinfo[Phone]{\phonesymbol}{#1}}
+\newcommand{\homepage}[1]{\printinfo[Homepage]{\homepagesymbol}{#1}}
+\newcommand{\twitter}[1]{\printinfo[Twitter]{\twittersymbol}{#1}}
+\newcommand{\linkedin}[1]{\printinfo[LinkedIn]{\linkedinsymbol}{#1}}
+\newcommand{\github}[1]{\printinfo[GitHub]{\githubsymbol}{#1}}
+\newcommand{\orcid}[1]{\printinfo[ORCID]{\orcidsymbol}{#1}}
+\newcommand{\location}[1]{\printinfo[Location]{\locationsymbol}{#1}}
+\newcommand{\googlescholar}[1]{\printinfo[Google Scholar]{\faGraduationCap}{#1}}
+\newcommand{\stackoverflow}[1]{\printinfo[Stack Overflow]{\faStackOverflow}{#1}}
+\newcommand{\home}[1]{\printinfo[Home]{\faHome}{#1}}
 
 \newcommand{\personalinfo}[1]{\def\@personalinfo{#1}}
 
@@ -370,6 +372,10 @@
 \RequirePackage[T1]{fontenc}
 \RequirePackage{microtype}
 \RequirePackage{hyperref}
+\RequirePackage{accsupp}
+\pdfstringdefDisableCommands{
+  \let\\\space
+}
 \RequirePackage[super]{nth}
 
 \setmainfont{Lato}
