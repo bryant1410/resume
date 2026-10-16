@@ -114,8 +114,12 @@
 \definecolor{LightGrey}{HTML}{666666}
 \definecolor{LighterGrey}{HTML}{888888}
 \colorlet{heading}{Vivid}
+\colorlet{headingrule}{heading}
 \colorlet{accent}{Vivid}
 \colorlet{emphasis}{SlateGrey}
+\colorlet{subheading}{emphasis}
+\colorlet{name}{emphasis}
+\colorlet{tagline}{accent}
 \colorlet{body}{LightGrey}
 \colorlet{inner-body}{LighterGrey}
 % Renamed or added v1.7
@@ -267,15 +271,21 @@
 
 \newcommand{\personalinfo}[1]{\def\@personalinfo{#1}}
 
+\newcommand{\namefont}{\Huge\bfseries}
+\newcommand{\taglinefont}{\large\bfseries}
+\newcommand{\personalinfofont}{\footnotesize\bfseries}
+\newcommand{\cvsectionfont}{\normalsize\bfseries}
+\newcommand{\cvsubsectionfont}{}
+
 \newcommand{\makecvheader}{%
   \begingroup
     \ifdef{\@photodiameter}{\begin{minipage}{\dimexpr\linewidth-\@photodiameter-2em}}{}%
-    \raggedright\color{emphasis}%
-    {\Huge\bfseries\MakeUppercase{\@name}\par}
+    \raggedright%
+    {\namefont\color{name}\MakeUppercase{\@name}\par}
     \medskip
-    {\large\bfseries\color{accent}\@tagline\par}
+    {\taglinefont\color{tagline}\@tagline\par}
     \medskip
-    {\footnotesize\bfseries\@personalinfo\par}
+    {\personalinfofont\color{emphasis}\@personalinfo\par}
     \ifdef{\@photodiameter}{%
     \end{minipage}\hfill%
     \begin{minipage}{\@photodiameter}
@@ -293,13 +303,13 @@
 \newcommand{\cvsection}[2][]{%
   \ifstrequal{#2}{}{}{\medskip}%
   \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}%
-  \ifstrequal{#2}{}{}{{\color{heading}\normalsize\bfseries\MakeUppercase{#2}}\\[-1ex]%
-  {\color{heading}\rule{\linewidth}{.5pt}\par}\medskip}
+  \ifstrequal{#2}{}{}{{\color{heading}\cvsectionfont\MakeUppercase{#2}}\\[-1ex]%
+  {\color{headingrule}\rule{\linewidth}{.5pt}\par}\medskip}
 }
 
 \newcommand{\cvsubsection}[1]{%
   \smallskip%
-  {\color{emphasis}#1\par}\smallskip
+  {\color{subheading}\cvsubsectionfont{#1}\par}\smallskip
 }
 
 % v1.1.4: fixes inconsistent font size
