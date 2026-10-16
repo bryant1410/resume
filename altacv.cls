@@ -488,7 +488,7 @@
 \newtoggle{boldname}
 
 \newcommand{\altacv@makeboldnames}{%
-  \renewcommand*{\mkbibnamefamily}[1]{%
+  \renewcommand*{\mkbibcompletename}[1]{%
     \global\togglefalse{boldname}%
     \ifdefempty{\my@namelist}{}{%
       \foreach \my@fname / \my@gname in \my@namelist {%
@@ -498,12 +498,8 @@
           {\global\toggletrue{boldname}}{}%
       }%
     }%
-    \iftoggle{boldname}{\textbf{##1}}{##1}%
+    \iftoggle{boldname}{\underline{##1}}{##1}%
   }%
-  % v1.7.4 will handle "von" "van" etc prefixes and "Jr" etc suffixes too
-  \let\mkbibnamegiven\mkbibnamefamily%
-  \let\mkbibnameprefix\mkbibnamefamily%
-  \let\mkbibnamesuffix\mkbibnamefamily%
 }
 
 \AtBeginDocument{%
