@@ -214,8 +214,8 @@
     }%
 }
 
-\newcommand{\name}[1]{\def\@name{#1}}
-\newcommand{\tagline}[1]{\def\@tagline{#1}}
+\newcommand{\name}[1]{\def\@name{#1}\hypersetup{pdftitle={#1 - Resume},pdfauthor={#1}}}
+\newcommand{\tagline}[1]{\def\@tagline{#1}\hypersetup{pdfsubject={#1}}}
 \newcommand{\photo}[2]{\def\@photo{#2}\def\@photodiameter{#1}}
 
 \NewInfoField{email}{\emailsymbol}[mailto:]
@@ -452,21 +452,22 @@
 \newcommand{\addnextpagesidebar}[2][]{\afterpage{\addsidebar[#1]{#2}}}
 
 \AtBeginDocument{%
-  \pagestyle{empty}
-  \color{body}
-  \raggedright
+  \pagestyle{empty}%
+  \color{body}%
+  \raggedright%
 }
 
-\RequirePackage[T1]{fontenc}
-\RequirePackage{microtype}
+\ifxetexorluatex\else
+  \RequirePackage[T1]{fontenc}
+\fi
+\setmainfont{Lato}
+\RequirePackage[verbose=silent]{microtype}
 \RequirePackage{hyperref}
 \RequirePackage{accsupp}
 \pdfstringdefDisableCommands{
   \let\\\space
 }
 \RequirePackage[super]{nth}
-
-\setmainfont{Lato}
 
 \hypersetup{colorlinks,linkcolor={cyan},citecolor={cyan},urlcolor={cyan}}
 
