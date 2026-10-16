@@ -46,7 +46,7 @@
 \RequirePackage[margin=2cm]{geometry}
 \geometry{left=1cm,right=9cm,marginparwidth=6.8cm,marginparsep=1.2cm,top=1cm,bottom=1cm}
 
-\RequirePackage{fontawesome}
+\RequirePackage[fixed]{fontawesome5}
 \RequirePackage{ifxetex,ifluatex}
 \RequirePackage{scrlfile}
 
@@ -118,8 +118,15 @@
 \colorlet{emphasis}{SlateGrey}
 \colorlet{body}{LightGrey}
 \colorlet{inner-body}{LighterGrey}
-\newcommand{\itemmarker}{{\small\textbullet}}
-\newcommand{\ratingmarker}{\faCircle}
+% Renamed or added v1.7
+\newcommand{\cvItemMarker}{{\small\textbullet}}
+\newcommand{\cvRatingMarker}{\faCircle}
+\let\itemmarker\cvItemMarker      % for backward compatibility
+\let\ratingmarker\cvRatingMarker  % for backward compatibility
+\newcommand{\cvDateMarker}{\faCalendar[regular]}
+\newcommand{\cvLocationMarker}{\faMapMarker}
+\newcommand{\locationname}{Location}
+\newcommand{\datename}{Date}
 
 \RequirePackage{tikz}
 \usetikzlibrary{arrows}
@@ -141,10 +148,11 @@
   \begin{adjustwidth}{}{\dimexpr-\marginparwidth-\marginparsep\relax}}
   {\end{adjustwidth}}
 
+\providecommand{\faChain}{\faLink}
 \newcommand{\emailsymbol}{\faAt}
 \newcommand{\phonesymbol}{\faPhone}
-\newcommand{\homepagesymbol}{\faChain}
-\newcommand{\locationsymbol}{\faMapMarker}
+\newcommand{\homepagesymbol}{\faGlobe}
+\newcommand{\locationsymbol}{\cvLocationMarker}
 \newcommand{\linkedinsymbol}{\faLinkedin}
 \newcommand{\twittersymbol}{\faTwitter}
 \newcommand{\githubsymbol}{\faGithub}
