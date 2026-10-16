@@ -23,8 +23,9 @@
 \ProvidesClass{altacv}[2018/12/01 AltaCV v1.1.5, yet another alternative class for a résumé/curriculum vitae.]
 
 %% v1.1: Optionally load academicons
+%% v1.7.4: academicons option is now obsolete and unnecessary
 \newif\if@academicons
-\DeclareOption{academicons}{\@academiconstrue}
+\DeclareOption{academicons}{\ClassWarning{altacv}{academicons option is now obsolete and unnecessary.}\@academiconstrue}
 %% v1.1.3: Choice of round/square photo
 \newif\if@normalphoto
 \DeclareOption{normalphoto}{\@normalphototrue}
@@ -41,6 +42,9 @@
 \RequirePackage{fontawesome}
 \RequirePackage{ifxetex,ifluatex}
 \RequirePackage{scrlfile}
+
+% v1.7.2 Add simpleicons to provide X icon
+\IfFileExists{simpleiconsglyphs-pdftex.tex}{\RequirePackage{simpleicons}}{}
 
 %% v1.1.5: added for convenience
 \newif\ifxetexorluatex
@@ -137,8 +141,28 @@
 \newcommand{\linkedinsymbol}{\faLinkedin}
 \newcommand{\twittersymbol}{\faTwitter}
 \newcommand{\githubsymbol}{\faGithub}
-\newcommand{\orcidsymbol}{\aiOrcid}
+\ifundef{\orcidsymbol}{%
+  \ifdef{\faOrcid}{%
+    \newcommand{\orcidsymbol}{\faOrcid}%
+  }{%
+    \ifxetexorluatex
+      \IfFileExists{academicons.sty}{%
+        \RequirePackage{academicons}%
+        \newcommand{\orcidsymbol}{\aiOrcid}%
+      }{%
+        \newcommand{\orcidsymbol}{ORCID}%
+      }%
+    \else
+      \newcommand{\orcidsymbol}{ORCID}%
+    \fi
+  }%
+}{}
 \newcommand{\mailsymbol}{\faEnvelope}
+\ifcsdef{simpleicon@xicon}{%
+  \newcommand{\xtwittersymbol}{\raisebox{-0.1ex}{\small\simpleicon{x}}\kern 0.1em}%
+}{%
+  \let\xtwittersymbol\twittersymbol
+}
 
 \newcommand{\printinfo}[3][]{%
   \mbox{\textcolor{accent}{\normalfont\ifstrempty{#1}{#2}{\BeginAccSupp{method=escape,ActualText={#1:\space}}#2\EndAccSupp{}}}\hspace{0.5em}#3\hspace{2em}}%
@@ -152,6 +176,7 @@
 \newcommand{\phone}[1]{\printinfo[Phone]{\phonesymbol}{#1}}
 \newcommand{\homepage}[1]{\printinfo[Homepage]{\homepagesymbol}{#1}}
 \newcommand{\twitter}[1]{\printinfo[Twitter]{\twittersymbol}{#1}}
+\newcommand{\xtwitter}[1]{\printinfo[X]{\xtwittersymbol}{#1}}
 \newcommand{\linkedin}[1]{\printinfo[LinkedIn]{\linkedinsymbol}{#1}}
 \newcommand{\github}[1]{\printinfo[GitHub]{\githubsymbol}{#1}}
 \newcommand{\orcid}[1]{\printinfo[ORCID]{\orcidsymbol}{#1}}
@@ -302,7 +327,9 @@
 \newenvironment{cvcolumn}[1]{\begin{minipage}[t]{#1}\raggedright}{\end{minipage}}
 
 % From Santi: import "inputenc" here so it's before BibLaTeX.
-\RequirePackage[utf8]{inputenc}
+\ifxetexorluatex\else
+  \RequirePackage[utf8]{inputenc}
+\fi
 
 % For US-style quotes.
 \RequirePackage[american]{babel}
