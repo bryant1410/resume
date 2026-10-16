@@ -32,9 +32,16 @@
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{extarticle}}
 \newif\if@raggedtwoe
 \DeclareOption{ragged2e}{\@raggedtwoetrue}
+%% v1.3: load hyperref for clickable hyperlinks
+\newif\if@withhyper\@withhyperfalse
+\DeclareOption{withhyper}{\@withhypertrue}
 \ProcessOptions\relax
 
 \LoadClass{extarticle}
+\RequirePackage{etoolbox}
+\newtoggle{withhyper}\togglefalse{withhyper}
+\if@withhyper\toggletrue{withhyper}\fi
+\RequirePackage{xparse}
 
 \RequirePackage[margin=2cm]{geometry}
 \geometry{left=1cm,right=9cm,marginparwidth=6.8cm,marginparsep=1.2cm,top=1cm,bottom=1cm}
@@ -164,26 +171,91 @@
   \let\xtwittersymbol\twittersymbol
 }
 
-\newcommand{\printinfo}[3][]{%
-  \mbox{\textcolor{accent}{\normalfont\ifstrempty{#1}{#2}{\BeginAccSupp{method=escape,ActualText={#1:\space}}#2\EndAccSupp{}}}\hspace{0.5em}#3\hspace{2em}}%
+\csdef{altacv@label@email}{Email}
+\csdef{altacv@label@mailaddress}{Address}
+\csdef{altacv@label@phone}{Phone}
+\csdef{altacv@label@homepage}{Homepage}
+\csdef{altacv@label@twitter}{Twitter}
+\csdef{altacv@label@xtwitter}{X}
+\csdef{altacv@label@linkedin}{LinkedIn}
+\csdef{altacv@label@github}{GitHub}
+\csdef{altacv@label@orcid}{ORCID}
+\csdef{altacv@label@location}{Location}
+\csdef{altacv@label@googlescholar}{Google Scholar}
+\csdef{altacv@label@stackoverflow}{Stack Overflow}
+\csdef{altacv@label@home}{Home}
+
+\NewDocumentCommand{\printinfo}{o m m o}{%
+  \IfNoValueTF{#1}{%
+    \def\altacv@curlabel{\detokenize{#2}}%
+  }{%
+    \ifcsdef{altacv@label@#1}{%
+      \def\altacv@curlabel{\csuse{altacv@label@#1}}%
+    }{%
+      \def\altacv@curlabel{#1}%
+    }%
+  }%
+  \IfNoValueTF{#4}{%
+    \mbox{\textcolor{accent}%
+    {\BeginAccSupp{method=escape,ActualText={\altacv@curlabel:\space}}\normalfont #2\EndAccSupp{}}%
+    \hspace{0.5em}#3\hspace{2em}}%
+  }{% v1.7.4: fix accsupp ActualText bugs when withhyper enabled
+    \iftoggle{withhyper}{%
+      \mbox{\textcolor{accent}%
+      {\BeginAccSupp{method=escape,ActualText={\altacv@curlabel:\space}}\normalfont #2\EndAccSupp{}}%
+      \hspace{0.5em}%
+      \BeginAccSupp{method=escape,ActualText={#4}}%
+      \href{#4}{#3}%
+      \EndAccSupp{}%
+      \hspace{2em}}%
+     }{%
+       \ClassWarning{altacv}{Please specify [withhyper] option to enable hyperlinks. Printing out full hyperlink prefix for #1 now.}%
+      \mbox{\textcolor{accent}%
+      {\BeginAccSupp{method=escape,ActualText={\altacv@curlabel:\space}}\normalfont #2\EndAccSupp{}}%
+      \hspace{0.5em}{#4}\hspace{2em}}%
+    }%
+  }%
+}
+
+%% v1.3: Convenient creation of fields
+%% v1.6: Starred mode to create \printinfo with full URL
+\NewDocumentCommand{\NewInfoField}{s m m o}{%
+  \IfBooleanF{#1}{%
+    \IfNoValueF{#4}{\csdef{#2 hyperprefix}{#4}}%
+  }%
+  \csdef{#2 symbol}{#3}%
+  \IfBooleanTF{#1}%
+    { \csdef{#2}##1##2{%
+        \IfNoValueTF {##2}%
+          {\printinfo[#2]{\csuse{#2 symbol}}{##1}}%
+          {\printinfo[#2]{\csuse{#2 symbol}}{##1}[##2]}%
+      }%
+    }%
+    { \csdef{#2}##1{%
+        \IfNoValueTF {#4}%
+          {\printinfo[#2]{\csuse{#2 symbol}}{##1}}%
+          {\printinfo[#2]{\csuse{#2 symbol}}{##1}[\csuse{#2 hyperprefix}##1]}%
+      }%
+    }%
 }
 
 \newcommand{\name}[1]{\def\@name{#1}}
 \newcommand{\tagline}[1]{\def\@tagline{#1}}
 \newcommand{\photo}[2]{\def\@photo{#2}\def\@photodiameter{#1}}
-\newcommand{\email}[1]{\printinfo[Email]{\emailsymbol}{#1}}
-\newcommand{\mailaddress}[1]{\printinfo[Address]{\mailsymbol}{#1}}
-\newcommand{\phone}[1]{\printinfo[Phone]{\phonesymbol}{#1}}
-\newcommand{\homepage}[1]{\printinfo[Homepage]{\homepagesymbol}{#1}}
-\newcommand{\twitter}[1]{\printinfo[Twitter]{\twittersymbol}{#1}}
-\newcommand{\xtwitter}[1]{\printinfo[X]{\xtwittersymbol}{#1}}
-\newcommand{\linkedin}[1]{\printinfo[LinkedIn]{\linkedinsymbol}{#1}}
-\newcommand{\github}[1]{\printinfo[GitHub]{\githubsymbol}{#1}}
-\newcommand{\orcid}[1]{\printinfo[ORCID]{\orcidsymbol}{#1}}
-\newcommand{\location}[1]{\printinfo[Location]{\locationsymbol}{#1}}
-\newcommand{\googlescholar}[1]{\printinfo[Google Scholar]{\faGraduationCap}{#1}}
-\newcommand{\stackoverflow}[1]{\printinfo[Stack Overflow]{\faStackOverflow}{#1}}
-\newcommand{\home}[1]{\printinfo[Home]{\faHome}{#1}}
+
+\NewInfoField{email}{\emailsymbol}[mailto:]
+\NewInfoField{mailaddress}{\mailsymbol}
+\NewInfoField{phone}{\phonesymbol}[tel:]
+\NewInfoField{homepage}{\homepagesymbol}[https://]
+\NewInfoField{twitter}{\twittersymbol}[https://twitter.com/]
+\NewInfoField{xtwitter}{\xtwittersymbol}[https://x.com/]
+\NewInfoField{linkedin}{\linkedinsymbol}[https://linkedin.com/in/]
+\NewInfoField{github}{\githubsymbol}[https://github.com/]
+\NewInfoField{orcid}{\orcidsymbol}[https://orcid.org/]
+\NewInfoField{location}{\locationsymbol}
+\NewInfoField*{googlescholar}{\faGraduationCap}
+\NewInfoField*{stackoverflow}{\faStackOverflow}
+\NewInfoField{home}{\faHome}
 
 \newcommand{\personalinfo}[1]{\def\@personalinfo{#1}}
 
