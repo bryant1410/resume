@@ -442,6 +442,7 @@
 \renewcommand{\bibsetup}{\vspace*{-\baselineskip}}
 % \AtEveryBibitem{\makebox[\bibhang][l]{\itemmarker}}
 \setlength{\bibitemsep}{0.25\baselineskip}
+\setlength{\bibhang}{0pt}
 
 % v1.1.2: make it easier to add a sidebar aligned with top of next page
 \RequirePackage{afterpage}
