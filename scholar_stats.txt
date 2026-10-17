@@ -1,0 +1,4 @@
+# Google Scholar metrics: publications, citations, h-index (one per line or comma-separated)
+38
+2076
+17

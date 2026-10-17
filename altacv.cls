@@ -232,6 +232,55 @@
 \NewInfoField*{stackoverflow}{\faStackOverflow}
 \NewInfoField{home}{\faHome}
 
+\ifluatex
+  \RequirePackage{luacode}
+  \begin{luacode*}
+  function get_scholar_stats(filename)
+    local path = kpse.find_file(filename) or filename
+    local f = io.open(path, "r")
+    if not f then
+      tex.sprint("Google~Scholar")
+      return
+    end
+    local content = f:read("*a")
+    f:close()
+
+    local lines = {}
+    for line in content:gmatch("[^\r\n]+") do
+      local trimmed = line:match("^%s*(.-)%s*$")
+      if trimmed ~= "" and not trimmed:match("^[#%%]") then
+        table.insert(lines, trimmed)
+      end
+    end
+
+    if #lines == 3 then
+      local p, c, h = lines[1], lines[2], lines[3]
+      tex.sprint(string.format("%s~publications, %s~citations, and h-index~%s in Google~Scholar.", p, c, h))
+    elseif #lines == 1 then
+      local p, c, h = lines[1]:match("^([%d,]+)%s*[,/]%s*([%d,]+)%s*[,/]%s*([%d,]+)$")
+      if not p then
+        p, c, h = lines[1]:match("^([%d,]+)%s+([%d,]+)%s+([%d,]+)$")
+      end
+      if p and c and h then
+        tex.sprint(string.format("%s~publications, %s~citations, and h-index~%s in Google~Scholar.", p, c, h))
+      else
+        local phrase = lines[1]
+        phrase = phrase:gsub("(%d+)%s+publications", "%1~publications")
+        phrase = phrase:gsub("(%d+)%s+citations", "%1~citations")
+        phrase = phrase:gsub("h%-index%s+(%d+)", "h-index~%1")
+        phrase = phrase:gsub("Google%s+Scholar", "Google~Scholar")
+        tex.sprint(phrase)
+      end
+    else
+      tex.sprint(content)
+    end
+  end
+  \end{luacode*}
+  \NewDocumentCommand{\scholarstats}{O{scholar_stats.txt}}{\directlua{get_scholar_stats("#1")}}
+\else
+  \NewDocumentCommand{\scholarstats}{O{scholar_stats.txt}}{\input{#1}\unskip}
+\fi
+
 \newcommand{\personalinfo}[1]{\def\@personalinfo{#1}}
 
 \newcommand{\namefont}{\Huge\bfseries}
