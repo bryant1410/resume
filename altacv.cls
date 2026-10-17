@@ -42,6 +42,7 @@
 \newtoggle{withhyper}\togglefalse{withhyper}
 \if@withhyper\toggletrue{withhyper}\fi
 \RequirePackage{xparse}
+\RequirePackage{catchfile}
 
 \RequirePackage[margin=2cm]{geometry}
 \geometry{left=1cm,right=9cm,marginparwidth=6.8cm,marginparsep=1.2cm,top=1cm,bottom=1cm}
@@ -221,6 +222,25 @@
 \NewInfoField{email}{\emailsymbol}[mailto:]
 \NewInfoField{mailaddress}{\mailsymbol}
 \NewInfoField{phone}{\phonesymbol}[tel:]
+\newcommand{\altacv@printphone}[1]{%
+  \printinfo[phone]{\phonesymbol}{#1}[tel:#1]%
+}
+\RenewDocumentCommand{\phone}{m}{%
+  \begingroup
+  \def\input##1{##1}%
+  \edef\altacv@target{#1}%
+  \IfFileExists{\altacv@target}{%
+    \CatchFileDef{\altacv@phone}{\altacv@target}{\endlinechar=-1 }%
+    \expandafter\endgroup
+    \expandafter\altacv@printphone\expandafter{\altacv@phone}%
+  }{%
+    \endgroup
+    \def\altacv@raw{#1}%
+    \ifstrequal{\altacv@target}{\altacv@raw}{%
+      \altacv@printphone{#1}%
+    }{}%
+  }%
+}
 \NewInfoField{homepage}{\homepagesymbol}[https://]
 \NewInfoField{twitter}{\twittersymbol}[https://twitter.com/]
 \NewInfoField{xtwitter}{\xtwittersymbol}[https://x.com/]
