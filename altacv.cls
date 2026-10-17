@@ -398,51 +398,13 @@
 
 \RequirePackage[backend=biber,style=mla,sorting=ymddnt,minnames=5,maxnames=9,giveninits=true,date=year,isbn=false,url=false,doi=false,eprint=false]{biblatex}
 
-% From Santi: to order by year and month first.
-% See https://tex.stackexchange.com/a/140641/56795 and https://tex.stackexchange.com/a/46879/56795
-\DeclareSortingTemplate{ymddnt}{
-  \sort{
-    \field{presort}
-  }
-  \sort[final]{
-    \field{sortkey}
-  }
-  \sort[direction=descending]{
-    \field[strside=left,strwidth=4]{sortyear}
-    \field[strside=left,strwidth=4]{year}
-    \literal{9999}
-  }
-  \sort[direction=descending]{
-    \field{month}
-    \literal{99}
-  }
-  \sort[direction=descending]{
-    \field{day}
-    \literal{99}
-  }
-  \sort{
-    \field{sortname}
-    \field{author}
-    \field{editor}
-    \field{translator}
-    \field{sorttitle}
-    \field{title}
-  }
-  \sort{
-    \field{sorttitle}
-    \field{title}
-  }
-}
-
 %% For removing numbering entirely when using a numeric style
 % \setlength{\bibhang}{1em}
 % \DeclareFieldFormat{labelnumberwidth}{\makebox[\bibhang][l]{\itemmarker}}
 % \setlength{\biblabelsep}{0pt}
 \defbibheading{pubtype}{\cvsubsection{#1}}
-\renewcommand{\bibsetup}{\vspace*{-\baselineskip}}
 % \AtEveryBibitem{\makebox[\bibhang][l]{\itemmarker}}
-\setlength{\bibitemsep}{0.25\baselineskip}
-\setlength{\bibhang}{0pt}
+
 
 % v1.1.2: make it easier to add a sidebar aligned with top of next page
 \RequirePackage{afterpage}
