@@ -20,8 +20,27 @@ jobs:
       uses: xu-cheng/latex-action@v4
       with:
         root_file: main.tex
-    - name: Copy the PDF to _site/
-      run: mkdir -p _site && cp output/main.pdf _site/
+    - name: Copy the PDF to _site/ and add a root redirect
+      run: |
+        mkdir -p _site
+        cp output/main.pdf _site/
+        cat > _site/index.html <<'EOF'
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <meta name="robots" content="noindex">
+          <title>Redirecting to CV · Santiago Castro</title>
+          <link rel="canonical" href="https://santi.uy/resume/main.pdf">
+          <meta http-equiv="refresh" content="0; url=/resume/main.pdf">
+          <script>location.replace("/resume/main.pdf");</script>
+        </head>
+        <body>
+        <p>Redirecting to <a href="/resume/main.pdf">CV (PDF)</a>…</p>
+        </body>
+        </html>
+        EOF
     - name: Prepare the GH Pages content
       uses: actions/upload-pages-artifact@v5
     - name: Deploy to GH Pages
