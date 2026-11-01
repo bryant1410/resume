@@ -6,8 +6,31 @@
 
 \newif\ifpublic{}
 
-\publictrue{}
+% Automatically detect public vs. private based on the presence of local private files
+\IfFileExists{phone.tex}{%
+  \IfFileExists{ref.tex}{%
+    \publicfalse{}%
+  }{\publictrue{}}%
+}{\publictrue{}}
+
+% Optional manual overrides:
+%\publictrue{}
 %\publicfalse{}
+\ifdefined\forcepublic\publictrue\fi
+\ifdefined\forceprivate\publicfalse\fi
+\directlua{
+  local pub = os.getenv("PUBLIC")
+  if pub and not (pub == "" or pub == "0" or pub == "false") then
+    tex.sprint(string.char(92) .. "publictrue")
+  end
+  local priv = os.getenv("PRIVATE")
+  if priv and not (priv == "" or priv == "0" or priv == "false") then
+    tex.sprint(string.char(92) .. "publicfalse")
+  end
+}
+
+\newif\ifprivate{}
+\ifpublic\privatefalse\else\privatetrue\fi
 
 \begin{document}
 
