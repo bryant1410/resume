@@ -5,13 +5,7 @@
 \mynames{Castro/Santiago}
 
 \newif\ifpublic{}
-
-% Automatically detect public vs. private based on the presence of local private files
-\IfFileExists{phone.tex}{%
-  \IfFileExists{ref.tex}{%
-    \publicfalse{}%
-  }{\publictrue{}}%
-}{\publictrue{}}
+\publictrue{} % Public by default
 
 % Optional manual overrides:
 %\publictrue{}
@@ -45,7 +39,7 @@
   \xtwitter{bryant1410}
   \stackoverflow{bryant1410}{https://stackoverflow.com/users/bryant1410}
   \location{San~Francisco~Bay~Area,~California,~USA}
-  \ifpublic{}\else\phone{\input{phone.tex}}\fi
+  \ifpublic{}\else\IfFileExists{private/phone.tex}{\phone{\input{private/phone.tex}}}{}\fi
 }
 
 \begin{fullwidth}
@@ -106,7 +100,11 @@
 
 \cvsection{References}
 
-\ifpublic{}{\small Available upon request.}\else\input{ref}\fi
+\ifpublic
+  {\small Available upon request.}
+\else
+  \IfFileExists{private/ref.tex}{\input{private/ref}}{{\small Available upon request.}}
+\fi
 
 \divider{}
 
