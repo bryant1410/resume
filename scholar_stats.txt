@@ -1,4 +1,4 @@
 # Google Scholar metrics: publications, citations, h-index (one per line or comma-separated)
-39
-2104
+38
+2121
 17
